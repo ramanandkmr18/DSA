@@ -1,0 +1,111 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+/*
+ * Problem Description
+	Give a N * N square matrix A, return an array of its anti-diagonals. Look at the example for more details.
+	
+	
+	Problem Constraints
+	1<= N <= 1000
+	1<= A[i][j] <= 1e9
+	
+	
+	Input Format
+	First argument is an integer N, denoting the size of square 2D matrix.
+	Second argument is a 2D array A of size N * N.
+	
+	
+	Output Format
+	Return a 2D integer array of size (2 * N-1) * N, representing the anti-diagonals of input array A.
+	The vacant spaces in the grid should be assigned to 0.
+	
+	
+	Example Input
+	Input 1:
+	3
+	1 2 3
+	4 5 6
+	7 8 9
+	Input 2:
+	
+	1 2
+	3 4
+	
+	
+	Example Output
+	Output 1:
+	1 0 0
+	2 4 0
+	3 5 7
+	6 8 0
+	9 0 0
+	Output 2:
+	
+	1 0
+	2 3
+	4 0
+	
+	
+	Example Explanation
+	For input 1:
+	The first anti diagonal of the matrix is [1 ], the rest spaces shoud be filled with 0 making the row as [1, 0, 0].
+	The second anti diagonal of the matrix is [2, 4 ], the rest spaces shoud be filled with 0 making the row as [2, 4, 0].
+	The third anti diagonal of the matrix is [3, 5, 7 ], the rest spaces shoud be filled with 0 making the row as [3, 5, 7].
+	The fourth anti diagonal of the matrix is [6, 8 ], the rest spaces shoud be filled with 0 making the row as [6, 8, 0].
+	The fifth anti diagonal of the matrix is [9 ], the rest spaces shoud be filled with 0 making the row as [9, 0, 0].
+	For input 2:
+	
+	The first anti diagonal of the matrix is [1 ], the rest spaces shoud be filled with 0 making the row as [1, 0, 0].
+	The second anti diagonal of the matrix is [2, 4 ], the rest spaces shoud be filled with 0 making the row as [2, 4, 0].
+	The third anti diagonal of the matrix is [3, 0, 0 ], the rest spaces shoud be filled with 0 making the row as [3, 0, 0].
+ */
+public class AntiDiagonalArray {
+
+	public static void main(String[] args) {
+		ArrayList<ArrayList<Integer>>  A = new ArrayList<ArrayList<Integer>>();
+		
+		A.add( new ArrayList<Integer>(Arrays.asList(1, 2, 3))); 
+		A.add( new ArrayList<Integer>(Arrays.asList(4, 5, 6)));
+		A.add( new ArrayList<Integer>(Arrays.asList(7, 8, 9)));
+		
+		System.out.println(A);
+		System.out.println("---------------------------");
+		System.out.println(diagonal(A)); 
+
+	}
+	public static ArrayList<ArrayList<Integer>> diagonal(ArrayList<ArrayList<Integer>> A) {
+        int row = A.size();
+        int col = A.get(0).size();
+
+        int antiDiagonalRowSize = (row + col - 1);
+        int anitDiagonalColSize = col;
+
+        ArrayList<ArrayList<Integer>>  AntiDiagonal = new ArrayList<ArrayList<Integer>>();
+        
+        // Add Blank Object in the new Created ArrayList
+        for(int i = 0; i < antiDiagonalRowSize; i++) {
+        	AntiDiagonal.add(new ArrayList<>());
+        } 
+        
+        // then Push/add the element in the ArrayList
+        // Note: The Diagonal value is present where i+J condition matches
+        for(int i=0; i<row; i++){  
+            for(int j=0; j<col; j++){ 
+            	AntiDiagonal.get(i + j).add(A.get(i).get(j)); 
+            }
+        }
+       // insert zero where value is blank or null
+        for(int i=0; i<antiDiagonalRowSize; i++){
+            for(int j=0; j<anitDiagonalColSize; j++){
+            	int compSize = anitDiagonalColSize - AntiDiagonal.get(i).size();
+                if(compSize!=0){
+                    for(int k=0; k<compSize; k++) {
+                    	AntiDiagonal.get(i).add(0);
+                    }
+                }
+            }
+        }
+
+        return AntiDiagonal;
+    }
+}

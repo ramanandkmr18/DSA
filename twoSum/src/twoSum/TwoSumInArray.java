@@ -65,14 +65,7 @@ public class TwoSumInArray {
         } 
         // In case there is no solution, we'll just return null
         return null;		
-	}
-	public static int[] twoSumWithTwoPointer(int[] nums, int target) {
-		
-		int start = 0;
-		int end = 
-		
-		return null;
-	}
+	} 
 	/*
 	 * The HashMap way to find the number of index of target SUM
 	 * TC - O(n^2)

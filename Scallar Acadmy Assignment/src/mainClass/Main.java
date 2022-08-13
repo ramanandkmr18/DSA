@@ -147,6 +147,9 @@ public class Main {
         	System.out.println(armList.get(i));
 		}
 		
+        String string = "AGAGAAGG";
+        string.length();
+        
 		/*
 		 * ArrayList<ArrayList<Integer> > A = new ArrayList<ArrayList<Integer> >();
 		 * ArrayList<ArrayList<Integer> > B = new ArrayList<ArrayList<Integer> >();
