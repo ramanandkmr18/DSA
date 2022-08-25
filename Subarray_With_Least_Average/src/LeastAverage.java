@@ -53,6 +53,29 @@ public class LeastAverage {
 		 
 		 System.out.println("LeastAverage "+ getLeastAverageSubArrayIndex(A,B) );
 	}
+	public static int solve(ArrayList<Integer> A, int B) {
+	        
+	        int N = A.size(); 
+
+	        int res_index = 0;
+	        int curr_sum = 0;
+
+	        for(int i=0; i<B; i++){
+	            curr_sum += A.get(i);
+	        }
+
+	        int min_Sum = curr_sum;
+
+	        for(int i=B; i<N; i++){
+	            curr_sum = curr_sum + A.get(i) - A.get(i-B);
+	            if(curr_sum < min_Sum){
+	                min_Sum = curr_sum;
+	                res_index = i-B+1;
+	            }
+	        }
+
+	        return res_index ;
+	}
 	public static int getLeastAverageSubArrayIndex(int[] A, int B) {
 		int n = A.length;
         int leastAverage = Integer.MAX_VALUE; 
